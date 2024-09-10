@@ -1,87 +1,93 @@
 # Base Deep Tree v1
 
-## Введение
+## Introduction
 
-Этот документ предоставляет обзор структуры проекта, основанного на React.js.
+This document provides an overview of the project structure based on React.js.
 
-### Цели
+### Goals
 
-- Решить проблему отсутствия единой структуры компонентов
-- Уменьшить количество файлов с большим количеством строк
-- Организовать папку `components` для легкого масштабирования проекта
-- Увеличить читаемость кода в больших проектах
-- Облегчить рефакторинг проекта
-- Повысить гибкость архитектуры проекта
+- Solve the problem of a lack of a unified component structure
+- Reduce the number of files with a large number of lines
+- Organize the `components` folder for easy project scaling
+- Increase code readability in large projects
+- Facilitate project refactoring
+- Increase the flexibility of the project architecture
 
-## Основы
+## Basics
 
-В основу архитектуры заложены принципы ООП. Знание этих практик позволит лучше раскрыть потенциал данной архитектуры.
+The architecture is based on OOP principles. Knowledge of these practices will help to better utilize the potential of
+this architecture.
 
-Frontend — работа с визуальным представлением информации.
+Frontend — working with visual representation of information.
 
-## Типы данных
-Всегда начинаются на T (это сокращение от слова Type) и пишутся в PaskalCase например вот так
+## Data Types
+
+Always start with T (short for Type) and are written in PascalCase, for example, like this:
 **TReportDetail**
 
-## Классы компонентов
+## Component Classes
 
-Визуально любой макет можно разделить на три условных категории:
-- **Страницы (pages)**
-- **Разделы (sections)**
-- **Элементы (components)**
+Visually any layout can be divided into three conditional categories:
 
-### Структура проекта
+- **Pages (pages)**
+- **Sections (sections)**
+- **Elements (components)**
 
-Проект основан на архитектуре, которая повторяет дизайн и вложенность компонентов, делясь на страницы, разделы и элементы.
+### Project Structure
 
-### Иерархия компонентов
+The project is based on an architecture that mirrors the design and nesting of components, divided into pages, sections,
+and elements.
 
-- **Страницы**
-  - Page (страницы)
-  - View (экраны)
-- **Разделы**
-  - Modal (модальные окна)
-  - SideBar (сайдбары, мобильные меню, элементы управления навигацией)
-  - PopUp (попапы)
-  - Aside (может не иметь элементов управления навигацией)
-- **Элементы**
+### Component Hierarchy
+
+- **Pages**
+  - Page (pages)
+  - View (views)
+- **Sections**
+  - Modal (modals)
+  - SideBar (sidebars, mobile menus, navigation control elements)
+  - PopUp (popups)
+  - Aside (may not have navigation control elements)
+- **Elements**
   - UI
   - Component
 
-### Типы компонентов
+### Component Types
 
-- **UI-компоненты**: Обычно это маленькие компоненты для UI
-- **Бизнес-компоненты**: Исполняют бизнес-логику
+- **UI components**: Typically small UI components
+- **Business components**: Perform business logic
 
-### Структура проекта
+### Project Structure
 
-1. Проект основован на компонентах, которые можно классифицировать как `Pages`, `Sections`, `Components`.
-2. Проект имеет иерархию: `Pages → Sections → Components` (страницы содержат разделы, разделы содержат компоненты).
+1. The project is based on components that can be classified as `Pages`, `Sections`, `Components`.
+2. The project has a hierarchy: `Pages → Sections → Components` (pages contain sections, sections contain components).
 
-### Именование компонентов
+### Component Naming
 
-1. Компоненты должны иметь названия в формате PascalCase.
-2. Разделы должны иметь окончания `_Section` (например, `HeaderSection`, `FooterSection`).
-3. Закрытые разделы имеют окончания:
-  - Модальные окна: `_Modal` (например, `AddUserModal`)
-  - SideBar: `_Sidebar` (например, `FilterSidebar`)
-  - Aside: `_Aside` (например, `MenuAside`)
-  - Попапы: `_PopUp` (например, `ProfilePopUp`)
-4. Страницы имеют окончания `_Page` (например, `MainPage`, `ContactUsPage`).
-5. Компоненты могут не иметь специальных окончаний.
+1. Components should be named in PascalCase format.
+2. Sections should have `_Section` suffixes (e.g., `HeaderSection`, `FooterSection`).
+3. Closed sections have the following suffixes:
 
-## Пример структуры компонентов
+- Modals: `_Modal` (e.g., `AddUserModal`)
+- SideBar: `_Sidebar` (e.g., `FilterSidebar`)
+- Aside: `_Aside` (e.g., `MenuAside`)
+- Popups: `_PopUp` (e.g., `ProfilePopUp`)
 
-Любой `tsx` компонент — это папка, название которой соответствует названию компонента.
-Компонент содержит несколько файлов:
+4. Pages have `_Page` suffixes (e.g., `MainPage`, `ContactUsPage`).
+5. Components may not have special suffixes.
 
-- `index.ts` - корневой файл (**обязательно**)
-- `ComponentName.tsx` - файл компонента, соответствует названию папки (**обязательно**)
-- `ComponentName.module.scss` - файл стилей, если есть
-- `ComponentName.types.ts` - типы для компонента
-- `ComponentName.validation.ts` - функции валидации, если нужны
+## Example Component Structure
 
-Пример структуры компонента `ComponentName`:
+Any `tsx` component is a folder named after the component.
+The component contains several files:
+
+- `index.ts` - root file (**mandatory**)
+- `ComponentName.tsx` - component file, matches the folder name (**mandatory**)
+- `ComponentName.module.scss` - style file, if any
+- `ComponentName.types.ts` - types for the component
+- `ComponentName.validation.ts` - validation functions, if needed
+
+Example structure of the `ComponentName` component:
 
 ```ts
 // JavaScript
@@ -124,39 +130,41 @@ ComponentName
 |       |-- putSomeThing.ts
 ```
 
-## Уровни вложенности и функциональные слои
+## Levels of Nesting and Functionality Layers
 
-### Введение в слои и уровни
+### Introduction to Layers and Levels
 
-Концепция иерархии слоев в архитектуре deep-tree схожа с логикой работы *namespace* в JS. Пространства имен используются для организации кода, предотвращения конфликтов имен и логической группировки кода в программных приложениях.
+The concept of layer hierarchy in deep-tree architecture is similar to the logic of *namespace* in JS. Namespaces are
+used to organize code, prevent naming conflicts, and logically group code in software applications.
 
-В архитектуре глубокого дерева система упорядочивает компоненты или элементы в виде дерева, где каждый элемент имеет доступ к родительским и своим дочерним элементам.
+In deep-tree architecture, the system organizes components or elements as a tree, where each element has access to its
+parent and its own child elements.
 
-### Уровни
+### Levels
 
-Уровни вложенности имеют обозначения и используются для ориентации уровня вложенности компонентов.
+Nesting levels have designations and are used to orient the nesting level of components.
 
-- **Корневой уровень**: Root Level
-- **Первый уровень**: First Depth Level
-- **Второй уровень**: Second Depth Level
-- **Третий уровень и более**: Third Depth Level and Beyond
+- **Root Level**
+- **First Depth Level**
+- **Second Depth Level**
+- **Third Depth Level and Beyond**
 
-### Функциональные слои
+### Functionality Layers
 
-Или функциональные слои служат для выполнения определенных задач на каждом уровне.
+Or functionality layers serve specific tasks at each level.
 
-- **Слой компонентов**: Component Layer
-- **Слой секций**: Section Layer
-- **Слой утилит**: Utility Layer
-- **Слой хуков**: Hook Layer
-- **Слой UI-компонентов**: UI Component Layer
-- и тд
+- **Component Layer**
+- **Section Layer**
+- **Utility Layer**
+- **Hook Layer**
+- **UI Component Layer**
+- etc.
 
-Пример структуры директории с обозначениями уровней:
+Example directory structure with level designations:
 
 ```ts
 // JavaScript
-// Корневой уровень компонента HomePage
+// Root Level component HomePage
 |-- index.ts
 |-- HomePage.tsx
 |-- HomePage.module.scss
@@ -193,32 +201,34 @@ ComponentName
 |   |   |-- index.ts
 ```
 
-## Принципы архитектуры
+## Architectural Principles
 
-- Чем меньше кода, тем лучше
-- Чем проще код, тем лучше
-- Код должен быть максимально читабельным и прозрачным
-- Должен соблюдаться принцип единой ответственности
-- Похожие проблемы должны решаться схожими методами
-- Дочерние компоненты могут использовать родительские
-- Проблемы решаются на своем уровне или выше
-- Разделяй и властвуй (придерживайся модульного подхода)
+- The less code, the better
+- The simpler, the better
+- Code should be as readable and transparent as possible
+- The single responsibility principle should be observed
+- Similar problems should be solved in similar ways
+- Child components can use parent components
+- Problems are solved at their level or above
+- Divide and conquer (adhere to a modular approach)
 
-## Недостатки
+## Disadvantages
 
-### Дубликаты кода
+### Code Duplicates
 
-При плохом знании проекта и архитектуры возможно возникновение дубликатов кода. На практике дубликаты кода минимальны.
+With poor knowledge of the project and architecture, code duplicates may occur. In practice, code duplicates are
+minimal.
 
-### Большая вложенность
+### Deep Nesting
 
-Может быть сложно ориентироваться в каталоге проекта из-за глубокой вложенности.
+It may be difficult to navigate the project directory due to deep nesting.
 
 # Extended Deep Tree
-Расширеная документация которая включает в себя точные примеры кода и рекомендации
 
-## Менеджеры (Contexts)
+Extended documentation including exact code examples and recommendations
 
-Менеджеры это функциональный слой служат некими узлами для передачи логики между разными уровнями и слоями
+## Managers (Contexts)
 
-По структуре менеджеры можно разделить на два вида сложные и простые
+Managers are a functional layer that serve as nodes for passing logic between different levels and layers.
+
+Structurally, managers can be divided into two types: simple and complex

@@ -3,8 +3,9 @@ import React from 'react';
 import cn from 'classnames';
 
 import s from './HomePage.module.scss';
-import SendButton from "./components/SendButton";
+
 import {withReportMnProvider} from "../../context/ReportMn";
+import MainSection from "./sections/MainSection";
 
 interface Props {
     className?: string;
@@ -18,7 +19,7 @@ interface Props {
 function HomePage({className = ''}: Props) {
     return (
         <main className={cn(s.HomePage, className)}>
-            <SendButton reportId="10"/>
+            <MainSection/>
         </main>
     )
 }
