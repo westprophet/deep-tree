@@ -384,14 +384,19 @@ export const [ReportMng, useReportMng] = createManager(
 Lightweight alternative to Manager. Declared inline inside the entity's view file. **No named access hook** — consumers call `useContext(Ctx)` directly with the exported context object. Keeps the named-hook namespace clean and preserves a visible distinction from Manager.
 
 **MUST:**
-- Declared inline in the entity's `.tsx` file (not in a separate `context.ts`).
+- Declared inline in the entity's `.tsx` file by default.
 - Default value is an empty object cast to the controller's return type: `createContext({} as ReturnType<typeof useController>)`.
 - Exported from the entity's `index.ts` alongside the component.
 - Consumers use `useContext(Ctx)` directly.
 
 **FORBID:**
 - A named access hook (`useXxxCtx`) that wraps `useContext`. That belongs to Manager.
-- A separate `context.ts` single entity for a one-line context.
+
+**MAY:**
+- Extract Context into a separate `context.ts` file **only** when the context has substantial supporting code that belongs solely to it — many context-only types, complex initial/default data, initialization helpers. A bare `createContext(...)` line does not qualify.
+
+**SIGNAL:**
+- A `context.ts` file that contains little more than `createContext(...)` → inline it back into the `.tsx`.
 
 **File structure (Section acting as a context provider):**
 
